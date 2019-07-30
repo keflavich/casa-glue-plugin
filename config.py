@@ -3,9 +3,11 @@ import copy
 from glue.config import data_factory
 from glue.core import Data, Component
 from casatools import table
+from astropy import logging
 
 def is_measurement_set(filename, **kwargs):
-    return filename.endswith('.ms') or filename.endswith('.ms/')
+    return (filename.endswith('.ms') or filename.endswith('.ms/') or
+            filename.endswith('.cal') or filename.endswith('.cal/'))
 
 @data_factory('MS loader', is_measurement_set)
 def read_measurement_set(file_name):
